@@ -7,10 +7,11 @@ import subprocess
 import sys
 import typing
 from pathlib import Path
+from security import safe_command
 
 
 def _get_usage_lines() -> typing.List[str]:
-    res = subprocess.run(["uvicorn", "--help"], stdout=subprocess.PIPE)
+    res = safe_command.run(subprocess.run, ["uvicorn", "--help"], stdout=subprocess.PIPE)
     help_text = res.stdout.decode("utf-8")
     return ["```", "$ uvicorn --help", *help_text.splitlines(), "```"]
 
