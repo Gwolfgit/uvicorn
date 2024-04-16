@@ -466,7 +466,7 @@ class Config:
         try:
             self.loaded_app = import_from_string(self.app)
         except ImportFromStringError as exc:
-            logger.error("Error loading ASGI app. %s" % exc)
+            logger.error("Error loading ASGI app. %s", exc)
             sys.exit(1)
 
         try:
